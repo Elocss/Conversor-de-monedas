@@ -8,8 +8,9 @@ public class Prueva {
 		System.out.println("Hola Mundo");
 		String[] list = new String[] {"conversor de Moneda", "conversor de Temperatura"};
 		 
-		JOptionPane.showInputDialog(null, "Seleccione una opcion de conversion", "Menu", JOptionPane.PLAIN_MESSAGE, null, list, list[0]);
-
+		 
+		Object obj = JOptionPane.showInputDialog(null, "Seleccione una opcion de conversion", "Menu", JOptionPane.PLAIN_MESSAGE, null, list, list[0]);
+		System.out.println(obj);
 	}
 
 }
