@@ -43,8 +43,10 @@ public class Prueva {
 			Object tipoDeMoneda = JOptionPane.showInputDialog(null, "Seleccione  Moneda a Convertir", "Menu", JOptionPane.PLAIN_MESSAGE, null, listMoneda, listMoneda[0]);
 		  
 		    String montoIngresado=JOptionPane.showInputDialog(null,"Ingresa la cantidad de dinero que deseas convertir");
-		    convertirMoneda(Double.parseDouble(montoIngresado), tipoDeMoneda.toString());
-		    System.out.println(montoIngresado);
+		     
+		    String resultadoConversion = convertirMoneda(Double.parseDouble(montoIngresado), tipoDeMoneda.toString());
+		    JOptionPane.showMessageDialog(null, resultadoConversion);
+		    System.out.println(resultadoConversion);
 			
 			break;
 		case "conversor de Temperatura":
@@ -64,18 +66,20 @@ public class Prueva {
 		 
 		 
 	}
-	public static double convertirMoneda(Double monto, String tipoDeConversion) {
-	double resultado = 0.0 ;
+	public static String convertirMoneda(Double monto, String tipoDeConversion) {
+	double resultado = monto;
+	String cadena = "Tienes ";
 		switch (tipoDeConversion) {
 	case  "Pesos Arg a Dolar UUEE" :
-		resultado = monto * 380; 
+		resultado *= 380; 
+		cadena += "$" + resultado + " Dolares";
 		break;
 
 		
 	default:
 		break;
 	}
-		return resultado;	
+		return cadena;	
 	
 	}
 }
