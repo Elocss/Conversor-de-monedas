@@ -1,10 +1,12 @@
 package conversorMonedas;
 
+import java.awt.HeadlessException;
+
 import javax.swing.*;
 
 public class Prueva {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NumberFormatException, HeadlessException, Exception {
 		 
 		
 		String[] list = new String[] {"conversor de Moneda", "conversor de Temperatura"};
@@ -26,11 +28,13 @@ public class Prueva {
 		
 		String[] listMoneda = new String[] {
 				"Pesos Arg a Dolar UUEE", 
-				"Dolar UUEE a Pesos Arg", 
+				"Dolar UUEE a Pesos Arg",
+				"Pesos arg a Euro",
+				"Euro a Peso Arg",
 				"Bolivar a Dolar",
 				"Dolar UUEE a Bolivar", 
-				"Soles a Dolar UUEE", 
-				"Dolar UUEE a Soles", 
+				"Sol Peru a Dolar UUEE", 
+				"Dolar UUEE a Sol Peru", 
 				"Pesos chl a Dolar UUEE",
 				"Dolar UUEE a Pesos Chl"};
 
@@ -40,13 +44,15 @@ public class Prueva {
 		switch (obj.toString()) {
 		case "conversor de Moneda":
 			System.out.println("conversor de Moneda");
-			Object tipoDeMoneda = JOptionPane.showInputDialog(null, "Seleccione  Moneda a Convertir", "Menu", JOptionPane.PLAIN_MESSAGE, null, listMoneda, listMoneda[0]);
+			Object tipoDeMoneda = JOptionPane.showInputDialog(null, "Seleccione  Moneda a Convertir", "Tipo de Moneda", JOptionPane.PLAIN_MESSAGE, null, listMoneda, listMoneda[0]);
 		  
 		    String montoIngresado=JOptionPane.showInputDialog(null,"Ingresa la cantidad de dinero que deseas convertir");
-		     
+		    
+		    if (elValorIngresadoEsValido(montoIngresado)){
 		    String resultadoConversion = convertirMoneda(Double.parseDouble(montoIngresado), tipoDeMoneda.toString());
-		    JOptionPane.showMessageDialog(null, resultadoConversion);
-		    System.out.println(resultadoConversion);
+		    JOptionPane.showMessageDialog(null, resultadoConversion);	
+		    }
+		    
 			
 			break;
 		case "conversor de Temperatura":
@@ -61,6 +67,7 @@ public class Prueva {
 		default:
 			break;
 		}
+	
 		 
 		
 		 
@@ -72,17 +79,72 @@ public class Prueva {
 		switch (tipoDeConversion) {
 	case  "Pesos Arg a Dolar UUEE" :
 		resultado *= 380; 
-		cadena += "$" + resultado + " Dolares";
+		cadena += "$" + resultado + " Dolar uuee";
 		break;
-
-		
+	case "Dolar UUEE a Pesos Arg" :
+		resultado *= 380; 
+		cadena += "$" + resultado + " Pesos Arg";
+		break;
+	case  "Pesos Arg a Euro" :
+		resultado *= 257; 
+		cadena += "$" + resultado + " Pesos Arg";
+		break;
+	case "Euro a Pesos Arg" :
+		resultado *= 257; 
+		cadena += "$" + resultado + " Euros";
+		break;
+	case "Bolivar a Dolar"  :
+		resultado *= 29; 
+		cadena += "$" + resultado + " Dolar uuee";
+		break;
+	case "Dolar UUEE a Bolivar"  :
+		resultado *= 29; 
+		cadena += "$" + resultado + " Bolivares";
+		break;
+	case  "Soles a Dolar UUEE" :
+		resultado *= 0.26; 
+		cadena += "$" + resultado + " Dolar uuee";
+		break;
+	case  "Dolar UUEE a Sol Peru" :
+		resultado *= 0.26; 
+		cadena += "$" + resultado + " Sol Peru";
+		break;
+	case  "Pesos chl a Dolar UUEE" :
+		resultado *= 803; 
+		cadena += "$" + resultado + " Dolar uuee";
+		break;
+	case  "Dolar UUEE a Pesos Chl" :
+		resultado *= 803; 
+		cadena += "$" + resultado + " Dolar uuee";
+		break;
+	 
 	default:
 		break;
 	}
 		return cadena;	
 	
 	}
+
+	
+	public static boolean elValorIngresadoEsValido(String monto) throws Exception {
+		if (monto==null) {
+			System.out.println("ingrese monto valido");
+		 return false;
+			
+		}
+		
+		try {
+			Double.parseDouble(monto);
+		} catch (Exception e) {
+			System.out.println("el valor debe ser numerico");
+			throw new Exception(e.getMessage());
+		}
+		return true;
+		
+	}
 }
+
+
 
 	
 
