@@ -47,13 +47,16 @@ public class Prueva {
 			Object tipoDeMoneda = JOptionPane.showInputDialog(null, "Seleccione  Moneda a Convertir", "Tipo de Moneda", JOptionPane.PLAIN_MESSAGE, null, listMoneda, listMoneda[0]);
 		  
 		    String montoIngresado=JOptionPane.showInputDialog(null,"Ingresa la cantidad de dinero que deseas convertir");
-		    
+		     
 		    if (elValorIngresadoEsValido(montoIngresado)){
 		    String resultadoConversion = convertirMoneda(Double.parseDouble(montoIngresado), tipoDeMoneda.toString());
-		    JOptionPane.showMessageDialog(null, resultadoConversion);	
-		    }
 		    
-			
+		    JOptionPane.showMessageDialog(null, resultadoConversion);
+		    
+		    int resultado = JOptionPane.showConfirmDialog(null, "¿Desea Continuar?");
+		    System.out.println(resultado);
+		     
+		    }
 			break;
 		case "conversor de Temperatura":
 			System.out.println("conversor de Temperatura");
@@ -127,8 +130,8 @@ public class Prueva {
 
 	
 	public static boolean elValorIngresadoEsValido(String monto) throws Exception {
-		if (monto==null) {
-			System.out.println("ingrese monto valido");
+		if (monto==null) {	 
+		JOptionPane.showMessageDialog(null, "ingrese monto valido");
 		 return false;
 			
 		}
@@ -136,7 +139,7 @@ public class Prueva {
 		try {
 			Double.parseDouble(monto);
 		} catch (Exception e) {
-			System.out.println("el valor debe ser numerico");
+			JOptionPane.showMessageDialog(null, "el valor debe ser numerico");
 			throw new Exception(e.getMessage());
 		}
 		return true;
