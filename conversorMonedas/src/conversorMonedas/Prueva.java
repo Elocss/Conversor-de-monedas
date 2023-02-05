@@ -38,7 +38,44 @@ public class Prueva {
 				"Pesos chl a Dolar UUEE",
 				"Dolar UUEE a Pesos Chl"};
 
-		Object obj = JOptionPane.showInputDialog(null, "Seleccione una opción de conversión", "Menu", JOptionPane.PLAIN_MESSAGE, null, list, list[0]);
+		 
+		    vuelveMenuPrincipal(list, listMoneda, listgrados);
+		    int resultado = JOptionPane.showConfirmDialog(null, "¿Desea Continuar?");
+		    System.out.println(resultado);
+		    
+		     
+		    if (resultado == 0) {
+		    vuelveMenuPrincipal(list, listMoneda,listgrados );
+		    
+		     
+		    }else if (resultado == 1) {
+			JOptionPane.showMessageDialog(null, "Programa finalizado");
+			
+	      	}else  {
+	      	JOptionPane.showMessageDialog(null, "Programa finalizado");
+	      	}
+	      	
+	       
+	}
+	public static boolean elValorIngresadoEsValido(String monto) throws Exception {
+		if (monto==null) {	 
+		JOptionPane.showMessageDialog(null, "ingrese monto valido");
+		 return false;
+			
+		}
+		
+		try {
+			Double.parseDouble(monto);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "el valor debe ser numerico");
+			throw new Exception(e.getMessage());
+		}
+		return true;
+		 	    		
+		 
+	}
+	private static void vuelveMenuPrincipal(String[] list,String[] listMoneda, String[] listgrados) throws NumberFormatException, HeadlessException, Exception {
+Object obj = JOptionPane.showInputDialog(null, "Seleccione una opción de conversión", "Menu", JOptionPane.PLAIN_MESSAGE, null, list, list[0]);
 	 
 		
 		switch (obj.toString()) {
@@ -53,11 +90,9 @@ public class Prueva {
 		    
 		    JOptionPane.showMessageDialog(null, resultadoConversion);
 		    
-		    int resultado = JOptionPane.showConfirmDialog(null, "¿Desea Continuar?");
-		    System.out.println(resultado);
-		     
 		    }
-			break;
+break;
+			
 		case "conversor de Temperatura":
 			System.out.println("conversor de Temperatura");
 			Object temp = JOptionPane.showInputDialog(null, "Temperatura a Convertir", "Menu", JOptionPane.PLAIN_MESSAGE, null, listgrados, listgrados[0]);
@@ -70,12 +105,10 @@ public class Prueva {
 		default:
 			break;
 		}
-	
-		 
+		}
 		
-		 
-		 
-	}
+		
+	
 	public static String convertirMoneda(Double monto, String tipoDeConversion) {
 	double resultado = monto;
 	String cadena = "Tienes ";
@@ -129,25 +162,14 @@ public class Prueva {
 	}
 
 	
-	public static boolean elValorIngresadoEsValido(String monto) throws Exception {
-		if (monto==null) {	 
-		JOptionPane.showMessageDialog(null, "ingrese monto valido");
-		 return false;
-			
-		}
-		
-		try {
-			Double.parseDouble(monto);
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "el valor debe ser numerico");
-			throw new Exception(e.getMessage());
-		}
-		return true;
-		
-	}
+	 
 }
-
-
+ 
+/***
+ * @author ELOY ALCALA
+ * @version 8.1
+ * @param metodo OJptionpane
+ */
 
 	
 
